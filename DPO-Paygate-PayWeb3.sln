@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DPO-Paygate-PayWeb3", "DPO-Paygate-PayWeb3\DPO-Paygate-PayWeb3.csproj", "{A01E8F3C-7B45-43F8-905B-E77743FECC53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A01E8F3C-7B45-43F8-905B-E77743FECC53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A01E8F3C-7B45-43F8-905B-E77743FECC53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A01E8F3C-7B45-43F8-905B-E77743FECC53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A01E8F3C-7B45-43F8-905B-E77743FECC53}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {55F1A729-D7B3-4D5E-9DEB-6CF93228FE29}
+	EndGlobalSection
+EndGlobal
