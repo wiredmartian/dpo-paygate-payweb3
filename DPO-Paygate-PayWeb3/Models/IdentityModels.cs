@@ -29,5 +29,7 @@ namespace DPO_Paygate_PayWeb3.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Transaction> Transactions { get; set; }
     }
 }

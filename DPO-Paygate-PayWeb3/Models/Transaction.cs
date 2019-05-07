@@ -11,16 +11,16 @@ namespace DPO_Paygate_PayWeb3.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid ID { get; set; }
+        public Guid TRANSACTION_ID { get; set; }
         public DateTime? DATE { get; set; }
-        public string PAYGATE_ID { get; set; }
+        //public string PAYGATE_ID { get; set; }
         public string PAY_REQUEST_ID { get; set; }
+        public int AMOUNT { get; set; }
         public string REFERENCE { get; set; }
         public string TRANSACTION_STATUS { get; set; }
         public ResultCodes RESULT_CODE { get; set; }
         public string RESULT_DESC { get; set; }
-        public string TRANSACTION_ID { get; set; }
-        public string EMAIL_ADDRESS { get; set; }
+        public string CUSTOMER_EMAIL_ADDRESS { get; set; }
     }
 
     public enum ResultCodes
