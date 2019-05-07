@@ -9,7 +9,7 @@ using System.Web;
 
 namespace DPO_Paygate_PayWeb3.Services
 {
-    public class Payment
+    public class Payment : IPayment
     {
         private ApplicationDbContext _db;
 
@@ -87,6 +87,28 @@ namespace DPO_Paygate_PayWeb3.Services
             }
 
             return transaction;
+        }
+
+        public bool UpdateTransaction(Dictionary<string, string> request, string PayrequestId)
+        {
+            bool IsUpdated = false;
+
+            Transaction transaction = GetTransaction(PayrequestId);
+            if (transaction == null)
+                return IsUpdated;
+
+            transaction.TRANSACTION_STATUS = request["TRANSACTION_STATUS"];
+            transaction.RESULT_DESC = request["RESULT_DESC"];
+            transaction.RESULT_CODE = (ResultCodes)int.Parse(request["RESULT_CODE"]);
+            try
+            {
+                _db.SaveChanges();
+                IsUpdated = true;
+            } catch (Exception e)
+            {
+                // Oh well, log it
+            }
+            return IsUpdated;
         }
 
         /** Get the authenticated user */
