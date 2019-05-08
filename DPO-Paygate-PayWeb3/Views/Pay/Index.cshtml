@@ -23,7 +23,7 @@
 </style>
 <div class="container">
     <div class="row">
-        <h1>Pay Now with PayGate</h1>
+        <h2>Pay Now with PayGate</h2>
         <hr />
         <div class="col-md-12">
             <p class="text-center">
@@ -32,21 +32,11 @@
                     <span class="glyphicon glyphicon-lock"></span>
                 </button>
             </p>
-            <p class="text-info text-center">
-                You will be redirected to paygate to make your online payment.
-                Once the payment is received, we'll start processing your order
-            </p>
             <br />
             <p class="text-center">
                 <ul class="text-info" id="results"></ul>
             </p>
             <br />
-            <br />
-            <div class="row">
-                <div class="text-center">
-                    <img src="~/Content/PayGate_Logos/PayGate-Card-Brand-Logos.png" alt="" />
-                </div>
-            </div>
             <div class="hidden">
                 <form action="https://secure.paygate.co.za/payweb3/process.trans" method="POST">
                     <input id="PAY_REQUEST_ID" name="PAY_REQUEST_ID" type="hidden" />
@@ -58,8 +48,9 @@
         <br /><br />
     </div>
 </div>
-<script type="text/javascript">
 
+<script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
     $('#btn-pay').on('click', function () {
         let node = document.createElement("li");
         node.innerText = "Processing...";

@@ -25,7 +25,7 @@ namespace DPO_Paygate_PayWeb3.Controllers
             return View();
         }
 
-        public async Task<JsonResult> GetResult()
+        public async Task<JsonResult> GetRequest()
         {
             HttpClient http = new HttpClient();
             Dictionary<string, string> request = new Dictionary<string, string>();
