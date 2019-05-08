@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "Pay Now Using PayGate";
+}
+<style>
+    .hidden {
+        display: none;
+    }
+
+    li {
+        font-size: 18px;
+        list-style-type: none;
+    }
+
+    #results {
+        display: block;
+        text-align: center;
+    }
+
+    #paygate {
+        display: none;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <h1>Pay Now with PayGate</h1>
+        <hr />
+        <div class="col-md-12">
+            <p class="text-center">
+                <button class="btn btn-success btn-lg" id="btn-pay">
+                    PAY NOW
+                    <span class="glyphicon glyphicon-lock"></span>
+                </button>
+            </p>
+            <p class="text-info text-center">
+                You will be redirected to paygate to make your online payment.
+                Once the payment is received, we'll start processing your order
+            </p>
+            <br />
+            <p class="text-center">
+                <ul class="text-info" id="results"></ul>
+            </p>
+            <br />
+            <br />
+            <div class="row">
+                <div class="text-center">
+                    <img src="~/Content/PayGate_Logos/PayGate-Card-Brand-Logos.png" alt="" />
+                </div>
+            </div>
+            <div class="hidden">
+                <form action="https://secure.paygate.co.za/payweb3/process.trans" method="POST">
+                    <input id="PAY_REQUEST_ID" name="PAY_REQUEST_ID" type="hidden" />
+                    <input id="CHECKSUM" name="CHECKSUM" type="hidden" />
+                    <input id="REDIRECT" type="submit" />
+                </form>
+            </div>
+        </div>
+        <br /><br />
+    </div>
+</div>
+<script type="text/javascript">
+
+    $('#btn-pay').on('click', function () {
+        let node = document.createElement("li");
+        node.innerText = "Processing...";
+        document.querySelector("#results").appendChild(node);
+
+        $.get(`/pay/getrequest`)
+            .done(data => success(data))
+            .fail(err => error(err));
+    });
+
+    function success(data) {
+        let requestNode = document.createElement("li");
+        requestNode.innerText = "Request retrieved";
+        document.querySelector("#results").appendChild(requestNode);
+
+        requestNode.innerText = data.message;
+        if (data.success) {
+            $("#PAY_REQUEST_ID").val(data.results.PAY_REQUEST_ID);
+            $("#CHECKSUM").val(data.results.CHECKSUM);
+
+
+            let redirectNode = document.createElement("li");
+            redirectNode.innerText = "Redirecting...";
+            document.querySelector("#results").appendChild(redirectNode);
+
+            document.querySelector("#REDIRECT").click();
+        }
+    }
+
+    function error(data) {
+        console.log("Error");
+        let node = document.createElement("li");
+        node.innerText = data;
+        document.querySelector("#results").appendChild(node);
+    }
+</script>
+
