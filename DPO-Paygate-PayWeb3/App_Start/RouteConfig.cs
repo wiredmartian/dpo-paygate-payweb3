@@ -16,7 +16,7 @@ namespace DPO_Paygate_PayWeb3
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Pay", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
