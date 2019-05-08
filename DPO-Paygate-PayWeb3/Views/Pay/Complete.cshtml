@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Payment Completed";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Payment Status</h2>
+            <hr />
+            <br />
+            @if (TempData["Status"] != null)
+            {
+                if (TempData["Status"].ToString() == "Approved")
+                {
+                    <p class="lead text-info">
+                        Your payment has been approved!
+                    </p>
+                }
+                else
+                {
+                    <p class="lead text-danger">
+                        Payment Status: @TempData["Status"]
+                    </p>
+                }
+            }
+            <br />
+        </div>
+        <br />
+    </div>
+</div>
+
