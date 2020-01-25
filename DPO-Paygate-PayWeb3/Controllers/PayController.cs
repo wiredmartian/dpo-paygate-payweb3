@@ -47,7 +47,8 @@ namespace DPO_Paygate_PayWeb3.Controllers
                 request.Add("EMAIL", _payment.GetAuthenticatedUser().Email);
             } else
             {
-                request.Add("EMAIL", "solomzi.jikani@gmail.com");
+            // put your own email address for the payment confirmation (dev only)
+                request.Add("EMAIL", "<your email address goes here>");
             }
             request.Add("CHECKSUM", _payment.GetMd5Hash(request, PayGateKey));
 
