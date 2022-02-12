@@ -35,21 +35,19 @@ namespace DPO_Paygate_PayWeb3.Controllers
             request.Add("REFERENCE", "#45846"); // Payment ref e.g ORDER NUMBER
             request.Add("AMOUNT", paymentAmount);
             request.Add("CURRENCY", "ZAR"); // South Africa
-            request.Add("RETURN_URL", $"{Request.Url.Scheme}://{Request.Url.Authority}/pay/completepayment");
+            // PayGate Web3 now needs a real/non-localhost url as a RETURN_URL
+            // TODO: Here you can add any website url to test, but bear in mind that it will return to this website once payment is completes
+            request.Add("RETURN_URL", "https://example.com");
             request.Add("TRANSACTION_DATE", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             request.Add("LOCALE", "en-za");
             request.Add("COUNTRY", "ZAF");
 
             // get authenticated user's email
             // use a valid email, paygate will send a transaction confirmation to it
-            if (HttpContext.User.Identity.IsAuthenticated)
-            {
-                request.Add("EMAIL", _payment.GetAuthenticatedUser().Email);
-            } else
-            {
-            // put your own email address for the payment confirmation (dev only)
-                request.Add("EMAIL", "<your email address goes here>");
-            }
+            request.Add("EMAIL",
+                HttpContext.User.Identity.IsAuthenticated
+                    ? _payment.GetAuthenticatedUser().Email
+                    : "<your email address goes here>");
             request.Add("CHECKSUM", _payment.GetMd5Hash(request, PayGateKey));
 
             string requestString = _payment.ToUrlEncodedString(request);
